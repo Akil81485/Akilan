@@ -1,0 +1,20 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $message = htmlspecialchars($_POST['message']);
+
+    $to = "akilankannan4@gmail.com"; // Replace with your Gmail address
+    $headers = "From: " . $email;
+
+    $mail_subject = "Contact Form Submission: " . $subject;
+    $mail_body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+
+    if (mail($to, $mail_subject, $mail_body, $headers)) {
+        echo "Message sent successfully!";
+    } else {
+        echo "Failed to send message.";
+    }
+}
+?>
